@@ -1,0 +1,31 @@
+pip install matplotlib
+
+pip install numpy
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Provided data
+sugar_concentration_new = np.array([0, 10, 20, 30, 40, 50])
+absorbance_new = np.array([0.000, 0.085, 0.168, 0.242, 0.338, 0.444])
+
+# Fit a linear trendline (degree 1 polynomial) using numpy's polyfit
+slope, intercept = np.polyfit(sugar_concentration_new, absorbance_new, 1)
+
+# Generate y values for the trendline using the fitted slope and intercept
+trendline = slope * sugar_concentration_new + intercept
+
+# Plotting the standard curve and linear trendline
+plt.scatter(sugar_concentration_new, absorbance_new, color='maroon')
+plt.plot(sugar_concentration_new, trendline, linestyle='--', color='maroon', label=f'Trendline: y = {slope:.3f}x + {intercept:.3f}, \n$R^2$ = 0.997') 
+
+# Adding labels and title
+plt.xlabel('Glucose (μmoles)')
+plt.ylabel('Absorbance (750 nm)')
+#plt.title('Standard Curve with Linear Trendline')
+
+# Display the legend
+plt.legend()
+
+# Show the plot
+plt.show()
